@@ -1,0 +1,47 @@
+baseURL = 'http://localhost:1313'
+languageCode = 'zh-cn'
+title = '我的博客'
+theme = 'hugo-theme-stack'
+hasCJKLanguage = true
+defaultContentLanguage = "zh-cn"
+
+# Page Settings
+[pagination]
+  pagerSize = 5
+
+# Sidebar Settings
+[params]
+  mainSections = ["post"]
+  featuredImageField = "image"
+  rssFullContent = true
+  favicon = "/favicon.ico"
+
+[params.footer]
+  since = 2024
+  customText = ""
+
+[params.dateFormat]
+  published = "2006-01-02"
+  lastUpdated = "2006-01-02"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    identifier = "about"
+    name = "关于"
+    url = "/about"
+    weight = 20
+  [[menu.main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives"
+    weight = 30
+  [[menu.main]]
+    identifier = "search"
+    name = "搜索"
+    url = "/search"
+    weight = 40
