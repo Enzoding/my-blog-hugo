@@ -1,6 +1,5 @@
 export default async function handler(req, res) {
-  const { query } = req;
-  const { code } = query;
+  const { code } = req.query;
 
   if (!code) {
     return res.status(400).json({ error: 'Code is required' });
@@ -21,9 +20,17 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    res.status(200).json(data);
+    
+    if (data.error) {
+      throw new Error(data.error_description || data.error);
+    }
+
+    const accessToken = data.access_token;
+    
+    // 重定向回 CMS，带上 token
+    res.redirect(`/admin/#access_token=${accessToken}`);
   } catch (error) {
     console.error('Error:', error);
-    res.status(500).json({ error: 'Failed to get access token' });
+    res.status(500).json({ error: error.message });
   }
 }

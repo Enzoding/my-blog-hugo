@@ -18,8 +18,9 @@
                         name: 'github',
                         repo: 'Enzoding/my-blog-hugo',
                         branch: 'main',
-                        base_url: location.origin,
-                        auth_endpoint: 'api/auth'
+                        auth_type: 'implicit',
+                        app_id: process.env.OAUTH_CLIENT_ID,
+                        base_url: location.origin
                     },
                     load_config_file: false,
                     media_folder: "static/images",
