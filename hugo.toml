@@ -1,47 +1,86 @@
-baseURL = 'http://localhost:1313'
-languageCode = 'zh-cn'
-title = '我的博客'
-theme = 'hugo-theme-stack'
-hasCJKLanguage = true
+baseURL = "http://localhost:1313"
+title = "我的博客"
+theme = "PaperMod"
+
 defaultContentLanguage = "zh-cn"
+languageCode = "zh-cn"
+hasCJKLanguage = true
 
-# Page Settings
-[pagination]
-  pagerSize = 5
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+paginate = 5
 
-# Sidebar Settings
+[minify]
+disableXML = true
+minifyOutput = true
+
 [params]
-  mainSections = ["post"]
-  featuredImageField = "image"
-  rssFullContent = true
-  favicon = "/favicon.ico"
+env = "production"
+title = "我的博客"
+description = "分享技术与生活"
+keywords = ["Blog", "Portfolio", "PaperMod"]
+author = "Your Name"
+DateFormat = "2006-01-02"
+defaultTheme = "auto"
+disableThemeToggle = false
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowWordCount = true
+ShowRssButtonInSectionTermList = true
+UseHugoToc = true
+disableSpecial1stPost = false
+disableScrollToTop = false
+comments = false
+hidemeta = false
+hideSummary = false
+showtoc = true
+tocopen = false
 
-[params.footer]
-  since = 2024
-  customText = ""
+  [params.assets]
+  favicon = "favicon.ico"
+  favicon16x16 = "favicon-16x16.png"
+  favicon32x32 = "favicon-32x32.png"
+  apple_touch_icon = "apple-touch-icon.png"
 
-[params.dateFormat]
-  published = "2006-01-02"
-  lastUpdated = "2006-01-02"
+  [params.profileMode]
+  enabled = false
+
+  [params.homeInfoParams]
+  Title = "你好 👋"
+  Content = """
+欢迎来到我的博客！这里将分享技术学习、个人成长等内容。
+"""
+
+  [[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/Enzoding"
 
 [menu]
   [[menu.main]]
-    identifier = "home"
-    name = "首页"
-    url = "/"
+    identifier = "posts"
+    name = "文章"
+    url = "/posts/"
     weight = 10
-  [[menu.main]]
-    identifier = "about"
-    name = "关于"
-    url = "/about"
-    weight = 20
   [[menu.main]]
     identifier = "archives"
     name = "归档"
-    url = "/archives"
-    weight = 30
+    url = "/archives/"
+    weight = 20
   [[menu.main]]
     identifier = "search"
     name = "搜索"
-    url = "/search"
+    url = "/search/"
+    weight = 30
+  [[menu.main]]
+    identifier = "about"
+    name = "关于"
+    url = "/about/"
     weight = 40
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]

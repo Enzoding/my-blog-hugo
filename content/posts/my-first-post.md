@@ -1,13 +1,15 @@
 ---
 title: "我的第一篇博客"
-description: "使用Hugo搭建个人博客的心得体会"
+summary: "使用Hugo搭建个人博客的心得体会"
 date: 2024-02-20
-image: "/images/first-post.jpg"
-categories:
-    - 技术
-tags:
-    - Hugo
-    - 博客
+tags: ["Hugo", "博客"]
+categories: ["技术"]
+author: "Your Name"
+showToc: true
+TocOpen: false
+draft: false
+hidemeta: false
+comments: false
 ---
 
 ## 为什么选择Hugo
