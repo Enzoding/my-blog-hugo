@@ -1,0 +1,42 @@
+name: Auto Publish Blog Post
+
+on:
+  push:
+    paths:
+      - 'content/posts/**'  # 只在文章内容变更时触发
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0    # 获取完整的 git 历史
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v39
+        with:
+          files: content/posts/**/*.md
+
+      - name: Update draft status
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            if grep -q "^draft: true" "$file"; then
+              echo "Processing $file"
+              sed -i 's/^draft: true/draft: false/' "$file"
+              
+              # 获取文章标题
+              title=$(grep "^title:" "$file" | sed 's/^title: *"//' | sed 's/"$//')
+              
+              # 提交更改
+              git config --local user.email "action@github.com"
+              git config --local user.name "GitHub Action"
+              git add "$file"
+              git commit -m "publish: 发布文章 - $title"
+              git push
+            fi
+          done
